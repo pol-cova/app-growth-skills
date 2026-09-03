@@ -2,14 +2,21 @@
 
 ## Decision summary
 
+- Implementation reviewed:
 - Product and category:
+- Platform:
 - Target user and acquisition promise:
+- Core product action:
+- Current onboarding:
 - Access model:
+- Current monetization boundary:
 - Time-to-value class:
 - Time-to-first-value:
 - Time-to-recurring-value:
 - First meaningful value:
 - Activation event and window:
+- Product and platform constraints:
+- Known instrumentation:
 - Main recommendation:
 - Confidence and highest-impact unknown:
 
@@ -29,7 +36,7 @@ Activation:
 
 | Claim or finding | Label | Evidence | Limits | Decision affected |
 | --- | --- | --- | --- | --- |
-|  | OBSERVED / BENCHMARK / INFERENCE / HYPOTHESIS |  |  |  |
+|  | FACT / CONSTRAINT / EXPERIMENTAL / BEHAVIORAL / QUALITATIVE / BENCHMARK / INFERENCE / HYPOTHESIS |  |  |  |
 
 ## Funnel health
 

@@ -1,6 +1,6 @@
 # Adversarial eval cases
 
-Evaluate behavior, reasoning, and uncertainty. Do not require one exact flow or exact wording. A passing response applies the evidence hierarchy, labels claims, connects onboarding to activation and downstream outcomes, and resists unnecessary redesign.
+Evaluate behavior, reasoning, and uncertainty. Do not require one exact flow or exact wording. A passing response uses the evidence type suited to the question, labels claims, connects onboarding to activation and downstream outcomes, and resists unnecessary redesign.
 
 Score each expected behavior as 0 or 1. A strong version should score at least 90% overall and pass every behavior marked `Critical`.
 

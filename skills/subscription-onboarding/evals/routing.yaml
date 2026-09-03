@@ -1,0 +1,38 @@
+should_trigger:
+  - prompt: Audit my app's first-run onboarding.
+    reason: First-run onboarding is the primary decision.
+  - prompt: Where should the paywall go in this onboarding?
+    reason: Paywall timing is part of the onboarding path.
+  - prompt: Users abandon screen four of onboarding.
+    reason: The question concerns onboarding behavior.
+  - prompt: Should notifications be requested during onboarding?
+    reason: The permission decision occurs in onboarding.
+  - prompt: Design first-run for my fitness app.
+    reason: First-run design is in scope.
+  - prompt: Our onboarding variant gets more trials but worse D30 retention.
+    reason: The experiment changes onboarding and activation quality.
+
+should_not_trigger:
+  - prompt: What should my annual price be?
+    reason: This is a standalone pricing decision.
+  - prompt: Write App Store screenshots.
+    reason: This is App Store optimization or marketing creative.
+  - prompt: Design a cancellation win-back.
+    reason: Cancellation and win-back are outside first-run.
+  - prompt: Why did DAU fall this month?
+    reason: This is generic product analytics without onboarding context.
+  - prompt: Write reactivation push notifications.
+    reason: This is lifecycle reactivation work.
+  - prompt: Audit my checkout page.
+    reason: Checkout alone is not an onboarding decision.
+
+boundaries:
+  - prompt: Which annual plan should I default to on my onboarding paywall?
+    expected: trigger
+    reason: Plan selection is materially tied to the onboarding paywall.
+  - prompt: Which annual plan should I use?
+    expected: do-not-trigger
+    reason: This is a standalone pricing and packaging decision.
+  - prompt: Analyze this experiment.
+    expected: insufficient-context
+    reason: Trigger only when the experiment concerns onboarding or activation.

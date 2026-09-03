@@ -1,0 +1,152 @@
+- id: codebase-first-audit
+  critical: true
+  setup: >
+    The agent can access an app repository. The user asks how to improve
+    onboarding but supplies no screenshots or funnel results.
+  required:
+    - inspects the implementation before recommending a flow
+    - identifies the core product action
+    - inspects current onboarding and paywall implementation
+    - checks analytics events and experiment infrastructure
+    - derives a time-to-value hypothesis from product behavior
+    - asks for metrics only after determining which metrics matter
+    - continues with explicit hypotheses when analytics do not exist
+  forbidden:
+    - immediately proposes a generic onboarding funnel
+    - asks for information already present in the codebase
+    - assumes the monetization model without inspection
+    - invents current conversion performance
+  concepts:
+    - codebase-first
+    - product-model
+    - evidence-labeling
+
+- id: immediate-utility
+  critical: true
+  prompt: >
+    A scanner produces a clean scan in five seconds. The proposed first-run
+    flow has a carousel, use-case quiz, testimonial, notification request,
+    and account creation before the camera.
+  required:
+    - identifies immediate time-to-value
+    - challenges pre-camera onboarding
+    - requests camera permission contextually
+    - defines successful scan as a candidate first-value event
+  forbidden:
+    - generic multi-screen questionnaire
+    - unsupported benchmark claim
+    - premature rating request
+  concepts:
+    - time-to-value
+    - contextual-permissions
+    - deletion-test
+
+- id: delayed-value-habit
+  critical: true
+  prompt: >
+    A sleep habit app expects outcomes over several weeks and creates a
+    nightly plan from schedule constraints.
+  required:
+    - distinguishes first value from the delayed outcome
+    - allows setup that changes the nightly plan
+    - treats the plan as credible progress rather than achieved sleep improvement
+    - defines activation beyond onboarding completion
+  forbidden:
+    - claims the final outcome during onboarding
+    - removes all setup as friction
+  concepts:
+    - delayed-value
+    - meaningful-setup
+    - activation
+
+- id: necessary-questionnaire
+  critical: true
+  prompt: >
+    A nutrition planner requires dietary restrictions, allergies, household
+    size, and cooking time to create a safe and useful plan.
+  required:
+    - keeps inputs that affect safety or output
+    - records the downstream use of each answer
+    - separates required setup from marketing research
+  forbidden:
+    - removes all questions by default
+    - treats safety constraints as optional conversion friction
+  concepts:
+    - answer-to-downstream-use
+    - constraints
+    - product-state
+
+- id: paywall-selection-bias
+  critical: true
+  prompt: >
+    In a randomized test, A has 1000 eligible users, 700 paywall viewers,
+    and 140 purchases. B has 1000 eligible users, 400 paywall viewers, and
+    100 purchases. The team says B wins because purchase per viewer is 25%
+    instead of 20%.
+  required:
+    - reports purchase per eligible user as 14 percent for A and 10 percent for B
+    - treats paywall-view conversion as a conditional diagnostic
+    - identifies post-treatment selection risk
+    - preserves the randomized eligible-user comparison
+  forbidden:
+    - declares B the winner from purchase per viewer
+    - ignores users who did not reach the paywall
+  concepts:
+    - intention-to-treat
+    - post-treatment-selection
+    - denominators
+
+- id: package-experiment
+  critical: true
+  prompt: >
+    A variant changes onboarding order, paywall design, plan count, annual
+    price, trial duration, and CTA. Trial starts increase.
+  required:
+    - identifies the test as a package comparison
+    - refuses component-level causal claims
+    - checks mature subscriber and revenue outcomes
+    - proposes isolated follow-up tests if attribution matters
+  forbidden:
+    - attributes the lift to one changed component
+    - declares success from trial starts alone
+  concepts:
+    - causal-identification
+    - package-tests
+    - downstream-guardrails
+
+- id: benchmark-transferability
+  critical: true
+  prompt: >
+    A team wants to copy a North American fitness-app hard-paywall benchmark
+    for a freemium education app in Brazil.
+  required:
+    - treats the benchmark as a prior
+    - identifies category geography access-model and cohort mismatches
+    - separates the dataset result from the product recommendation
+    - prioritizes first-party measurement
+  forbidden:
+    - turns the benchmark median into a target
+    - claims the access model caused the aggregate difference
+  concepts:
+    - source-quality
+    - transferability
+    - vendor-evidence
+
+- id: strong-existing-flow
+  critical: true
+  prompt: >
+    The current four-stage flow reaches first value quickly, activated payer
+    rate is strong, refunds are low, and renewal is healthy. A competitor
+    recently adopted a longer pain-first onboarding.
+  required:
+    - preserves the effective flow
+    - asks which measured outcome needs improvement
+    - treats competitor behavior as weak evidence
+    - proposes only a narrow justified test
+  forbidden:
+    - redesigns the flow for novelty
+    - copies the competitor without first-party evidence
+  concepts:
+    - first-party-evidence
+    - no-unnecessary-redesign
+    - deletion-test

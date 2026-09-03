@@ -8,7 +8,7 @@ Product facts: the user points the camera at an object and receives an identific
 
 Reasoning:
 
-- `OBSERVED` only if supplied data confirms the five-second result. Otherwise treat it as a product fact.
+- `FACT` if implementation or supplied product documentation confirms the five-second result. Use `BEHAVIORAL` for measured user completion times.
 - `INFERENCE`: introductory feature slides delay the acquisition promise.
 - `HYPOTHESIS`: letting users complete one identification before the paywall will improve activation and qualified purchase intent.
 
@@ -46,7 +46,7 @@ Result: variant paywall reach rises from 60% to 72%, trial starts per paywall vi
 
 Interpretation:
 
-- `OBSERVED`: report each result with denominator, interval, sample, and maturity window.
+- `EXPERIMENTAL` if the result comes from a valid randomized comparison. Otherwise label it `BEHAVIORAL`. Report each result with denominator, interval, sample, and maturity window.
 - `INFERENCE`: the variant likely improved a local step while reducing the quality or number of users surviving the full path.
 - Do not ship based on paywall reach or conditional trial conversion alone.
 - Inspect earlier abandonment, cohort mix, activation during trial, cancellation, and revenue per eligible install.

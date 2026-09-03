@@ -2,6 +2,8 @@
 
 Data-driven Agent Skills for building and optimizing subscription apps.
 
+[![skills.sh](https://skills.sh/b/pol-cova/app-growth-skills)](https://skills.sh/pol-cova/app-growth-skills)
+
 ## Included skill
 
 ### Subscription Onboarding
@@ -15,6 +17,8 @@ Use this skill to:
 - decide whether a question, permission, proof point, or paywall belongs;
 - interpret funnel results without confusing conversion movement with durable growth; and
 - specify controlled experiments with downstream guardrails.
+
+When an app repository is available, the skill inspects the implementation first. It maps current first-run behavior, monetization, permissions, persistence, and analytics before asking for missing metrics or recommending changes.
 
 The skill does not impose a universal sequence. A fast utility may need almost no onboarding. A behavior-change product may need credible explanation, setup, and commitment before its value becomes visible.
 
@@ -57,20 +61,26 @@ The skill reasons through:
 Current state -> Desired state -> Obstacle -> Mechanism -> Evidence -> Offer -> Activation
 ```
 
-It starts with product context and first-party evidence, classifies time-to-value, tests whether onboarding is needed, and keeps only stages with a concrete job. Each recommendation is labeled so observed facts do not blur into assumptions.
+It starts with the product implementation, builds a product model, classifies time-to-value, and tests whether onboarding is needed. It keeps only stages with a concrete job.
 
-Evidence is ranked in this order:
+Evidence is classified by the question:
 
-```text
-first-party experimental data
-> first-party observational data
-> product facts
-> relevant external benchmarks
-> general industry patterns
-> intuition
-```
+| Type | Use |
+| --- | --- |
+| `FACT` | Verified product behavior |
+| `CONSTRAINT` | Platform, safety, technical, privacy, or business requirements |
+| `EXPERIMENTAL` | Credible causal evidence |
+| `BEHAVIORAL` | First-party observational analytics |
+| `QUALITATIVE` | Evidence about expectations, confusion, and why users behave as they do |
+| `BENCHMARK` | External empirical prior |
+| `INFERENCE` | Deduction from stated evidence |
+| `HYPOTHESIS` | Claim that still needs validation |
 
 External benchmarks are priors. They are not prescriptions.
+
+## Scope
+
+The skill covers onboarding, first-run, onboarding-to-paywall, activation handoff, contextual permissions, and experiments that change those experiences. Standalone pricing, paywall creative, App Store optimization, lifecycle CRM, cancellation, win-back, reactivation, and unrelated analytics belong in specialized workflows.
 
 ## Repository structure
 
@@ -80,7 +90,7 @@ skills/
     ├── SKILL.md
     ├── references/       Deeper domain guidance loaded when relevant
     ├── assets/           Reusable audit output template
-    └── evals/            Adversarial behavioral cases
+    └── evals/            Answer-quality, routing, and regression cases
 ```
 
 ## Limitations
@@ -93,7 +103,7 @@ skills/
 
 ## Evaluate the skill
 
-Run the cases in `skills/subscription-onboarding/evals/cases.md` with the skill disabled, then repeat with the skill enabled. Score expected behaviors rather than wording. Test at least one product with no data, one with funnel data, and one with experiment results.
+Run the cases with the skill disabled, then repeat with it enabled. Score behavior rather than wording. Structured cases cover automation and codebase-first discovery. Routing cases test whether the skill activates only when onboarding or activation is central. Add regression fixtures from observed failures, not speculative prompt collections.
 
 ## Source basis
 
@@ -101,9 +111,9 @@ The initial methodology draws on the [Agent Skills specification](https://agents
 
 ## Contributing
 
-Issues and pull requests are welcome. Contributions should preserve the evidence hierarchy, distinguish facts from hypotheses, and avoid adding fixed funnels as universal best practices.
+Issues and pull requests are welcome. Contributions should match evidence to the question, distinguish facts from hypotheses, and avoid adding fixed funnels as universal best practices.
 
-For changes to the decision engine, add or update an adversarial case in `skills/subscription-onboarding/evals/cases.md`. Keep detailed domain material in `references/` so `SKILL.md` remains concise.
+For changes to the decision engine, add or update an eval. Keep detailed domain material in `references/` so `SKILL.md` remains concise. Run `ruby scripts/validate_skills.rb` before opening a pull request.
 
 ## License
 

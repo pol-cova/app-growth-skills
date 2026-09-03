@@ -68,6 +68,27 @@ When the learning goal concerns one mechanism, change one major causal idea. Kee
 
 If a package test changes pricing, layout, trial duration, and onboarding sequence together, it can answer whether the package performs better. It cannot identify which component caused the result. Label it accordingly and follow with isolated tests if component knowledge matters.
 
+## Preserve the randomized comparison
+
+For a randomized onboarding experiment, use the eligible randomized population as the default denominator for the primary causal estimate. Report:
+
+```text
+intention-to-treat or eligible-user result
++
+conditional funnel diagnostics
+```
+
+Onboarding completers, paywall viewers, trial starters, and users who reach a later screen are post-treatment populations when the variant can affect who enters them. Conditioning the main comparison on those groups can introduce selection bias.
+
+Example:
+
+| Arm | Eligible | Paywall viewers | Purchases | Purchase per viewer | Purchase per eligible user |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A | 1,000 | 700 | 140 | 20% | 14% |
+| B | 1,000 | 400 | 100 | 25% | 10% |
+
+Arm B has higher conditional conversion among paywall viewers but fewer purchases per randomized user. Do not call B better from the conditional rate alone. Use conditional steps to diagnose the mechanism after reporting the eligible-user effect.
+
 ## Check event quality
 
 Require stable definitions, deterministic firing conditions, deduplication, consistent anonymous-to-account identity, durable experiment assignment, and reliable timestamps. Validate subscription lifecycle events separately from client-side funnel events.
